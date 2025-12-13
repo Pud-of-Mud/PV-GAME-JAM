@@ -35,7 +35,7 @@ class Object:
 class Player(Object):
     ACCELERATION = 0.2
     def __init__(self, name, position, sprite, velocity):
-        sprite = load_sprite("player")
+        sprite = load_sprite("PlayerForward.png")
         self.direction = UP
         self.score = 0
         super().__init__(name, position, sprite, velocity)
@@ -48,5 +48,5 @@ class Player(Object):
 
 class Zombie(Object):
     def __init__(self, name, position, sprite, velocity):
-        sprite = load_sprite("zombie")
+        #sprite = load_sprite("zombie")
         super().__init__(name, position, sprite, velocity)

@@ -1,6 +1,8 @@
 import pygame
 import random
 
+from gamelogic import GameLogic
+from draw import Draw
 from models import Player
 from utils import load_sprite, get_random_position, text_to_screen
 from  pygame import (
@@ -17,14 +19,19 @@ from  pygame import (
 class Lockenbach:
     MIN_ASTEROID_DISTANCE = 250
     def __init__(self):
+        # Initialize Pygame and game window
         self._init_pygame()
-        self.screen = pygame.display.set_mode((800, 600))
-        self.background = load_sprite("space", False)
+
+        # Use Draw module for screen and background
+        self.screen = Draw.screen
+        self.background = Draw.background
+
+        # Initialize clock, font, and message
         self.clock = pygame.time.Clock()
         self.font = pygame.font.Font(None, 64)
         self.message = ""
         
-    
+        # Initialize object lists
         self.asteroids = []
         self.bullets = []
         self.player = Player((400, 300), self.bullets.append)
@@ -39,7 +46,8 @@ class Lockenbach:
                 ):
                     break
 
-            self.asteroids.append(Asteroid(position, self.asteroids.append))
+            self.asteroids.append(Player(position, self.asteroids.append))
+    
     def start(self):
         self.message = "Press 'Space' to begin!"
         if pygame.key.get_pressed() == K_SPACE:
@@ -48,20 +56,13 @@ class Lockenbach:
     def main_loop(self):
         while True:
             self._handle_input()
-            self._process_game_logic()
-            self._draw()
+            GameLogic._process_game_logic()
+            Draw._draw()
 
     def _init_pygame(self):
         pygame.init()
-        pygame.display.set_caption("Space Rocks")
-
-    def _get_game_objects(self):
-        game_objects = [*self.asteroids, *self.bullets]
-
-        if self.spaceship:
-            game_objects.append(self.spaceship)
-        
-        return game_objects
+        pygame.display.set_caption("Survival Game - Lockenbach")
+    
     def _handle_input(self):
         for event in pygame.event.get():
             if event.type == QUIT or (event.type == KEYDOWN and event.key == K_ESCAPE):
