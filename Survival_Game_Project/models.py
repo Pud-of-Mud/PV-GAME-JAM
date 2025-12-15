@@ -34,11 +34,11 @@ class Object:
 
 class Player(Object):
     ACCELERATION = 0.2
-    def __init__(self, name, position, sprite, velocity):
+    def __init__(self, position, sprite, velocity):
         sprite = load_sprite("PlayerForward.png")
         self.direction = UP
         self.score = 0
-        super().__init__(name, position, sprite, velocity)
+        super().__init__(position, sprite, velocity)
 
     def accelerate(self):
         self.velocity += self.direction * self.ACCELERATION

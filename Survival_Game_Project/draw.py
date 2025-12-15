@@ -4,8 +4,9 @@ import pygame
 from utils import load_sprite, get_random_position, text_to_screen
 
 class Draw:
-    screen = pygame.display.set_mode((800, 600))
-    background = load_sprite("space", False)
+    def __init__(self):
+        self.screen = pygame.display.set_mode((800, 600))
+        self.background = load_sprite("space", False)
 
     def _draw(self):
         self.screen.blit(self.background, (0, 0))  # Clear screen with black\
@@ -18,10 +19,13 @@ class Draw:
         for game_object in self._get_game_objects():
             game_object.draw(self.screen)
     
-    def _get_game_objects(self, player, zombies):
-        game_objects = [*self.asteroids, *self.bullets]
+    def _get_game_objects(self, player, zombies, grass):
+        game_objects = [*grass]
 
-        if self.spaceship:
-            game_objects.append(self.spaceship)
+        if player:
+            game_objects += [*player]
+        if zombies:
+            game_objects += [*zombies]
+        
         
         return game_objects

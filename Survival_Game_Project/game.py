@@ -32,8 +32,8 @@ class Lockenbach:
         self.message = ""
         
         # Initialize object lists
-        self.asteroids = []
-        self.bullets = []
+        self.grass = []
+        self.zombies = []
         self.player = Player((400, 300), self.bullets.append)
         
     
@@ -55,9 +55,13 @@ class Lockenbach:
 
     def main_loop(self):
         while True:
+            # Initialize Draw module
+            draw = Draw()
+            draw._get_game_objects(self.player, self.asteroids, [])
+
             self._handle_input()
             GameLogic._process_game_logic()
-            Draw._draw()
+            draw._draw()
 
     def _init_pygame(self):
         pygame.init()
