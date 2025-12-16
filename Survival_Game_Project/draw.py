@@ -6,7 +6,7 @@ from utils import load_sprite, get_random_position, text_to_screen
 class Draw:
     def __init__(self):
         self.screen = pygame.display.set_mode((800, 600))
-        self.background = load_sprite("space", False)
+        self.background = load_sprite("Grass", "ground")
 
     def _draw(self):
         self.screen.blit(self.background, (0, 0))  # Clear screen with black\

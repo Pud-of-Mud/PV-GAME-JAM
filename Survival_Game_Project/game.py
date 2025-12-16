@@ -3,7 +3,7 @@ import random
 
 from gamelogic import GameLogic
 from draw import Draw
-from models import Player
+from models import Player, Zombie, Grass
 from utils import load_sprite, get_random_position, text_to_screen
 from  pygame import (
     QUIT, 
@@ -17,14 +17,19 @@ from  pygame import (
 )
 
 class Lockenbach:
-    MIN_ASTEROID_DISTANCE = 250
+    MIN_ZOMBIE_DISTANCE = 250
+
     def __init__(self):
         # Initialize Pygame and game window
         self._init_pygame()
-
+        
+        # Initialize Draw Module
+        draw = Draw()
+        self.draw = draw
+        
         # Use Draw module for screen and background
-        self.screen = Draw.screen
-        self.background = Draw.background
+        self.screen = self.draw.screen
+        self.background = self.draw.background
 
         # Initialize clock, font, and message
         self.clock = pygame.time.Clock()
@@ -34,19 +39,19 @@ class Lockenbach:
         # Initialize object lists
         self.grass = []
         self.zombies = []
-        self.player = Player((400, 300), self.bullets.append)
+        self.player = Player((400, 300))
         
     
         for _ in range(6):
             while True:
                 position = get_random_position(self.screen)
                 if (
-                    position.distance_to(self.spaceship.position)
-                    > self.MIN_ASTEROID_DISTANCE
+                    position.distance_to(self.player.position)
+                    > self.MIN_ZOMBIE_DISTANCE
                 ):
                     break
 
-            self.asteroids.append(Player(position, self.asteroids.append))
+            self.zombies.append(Zombie(position, self.zombies.append))
     
     def start(self):
         self.message = "Press 'Space' to begin!"
@@ -55,13 +60,11 @@ class Lockenbach:
 
     def main_loop(self):
         while True:
-            # Initialize Draw module
-            draw = Draw()
-            draw._get_game_objects(self.player, self.asteroids, [])
+            self.draw._get_game_objects(self.player, self.asteroids, [])
 
             self._handle_input()
             GameLogic._process_game_logic()
-            draw._draw()
+            self.draw._draw()
 
     def _init_pygame(self):
         pygame.init()

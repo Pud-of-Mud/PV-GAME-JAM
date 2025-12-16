@@ -5,9 +5,10 @@ from utils import load_sprite, get_random_position, text_to_screen
 UP = Vector2(0, -1)
 
 class Object:
-    def __init__(self, position, sprite, velocity):
+    def __init__(self, time, position, sprite, velocity):
         self.position = Vector2(position)
         self.velocity = Vector2(velocity)
+        self.time = time
         self.sprite = sprite
         self.radius = sprite.get_width() / 2
 
@@ -34,11 +35,11 @@ class Object:
 
 class Player(Object):
     ACCELERATION = 0.2
-    def __init__(self, position, sprite, velocity):
-        sprite = load_sprite("PlayerForward.png")
+    def __init__(self, position):
+        sprite = load_sprite("Player", "PlayerForward")
         self.direction = UP
         self.score = 0
-        super().__init__(position, sprite, velocity)
+        super().__init__(0, position, sprite, Vector2(0))
 
     def accelerate(self):
         self.velocity += self.direction * self.ACCELERATION
@@ -50,3 +51,12 @@ class Zombie(Object):
     def __init__(self, name, position, sprite, velocity):
         #sprite = load_sprite("zombie")
         super().__init__(name, position, sprite, velocity)
+
+class Grass(Object):
+    def __init__(self, time, position, sprite, num=3):
+        sprites = {1: "ground",
+                   2: "dry grass",
+                   3: "grass"}
+        grass_type = sprites[num]
+        sprite = rotozoom(load_sprite("Grass", grass_type), 0, 0.25)
+        super().__init__(time, position, sprite, Vector2(0))

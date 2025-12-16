@@ -5,8 +5,8 @@ from pygame import Color
 from pygame.image import load
 from pygame.math import Vector2
 
-def load_sprite(name, with_alpha=True):
-    path = f""
+def load_sprite(type, name, with_alpha=True):
+    path = f"Survival_Game_Project/sprites/{type}/{name}.png"
     loaded_sprite = load(path)
 
     if with_alpha:
