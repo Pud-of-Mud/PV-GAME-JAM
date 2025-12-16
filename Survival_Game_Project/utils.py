@@ -25,9 +25,8 @@ def get_random_velocity(min_speed, max_speed):
     angle = random.randrange(0, 360)
     return Vector2(speed, 0).rotate(angle)
 
-def get_grass_positions(x, y):
+def get_positions(x, y):
     return Vector2(x, y)
-
 
 def text_to_screen(screen, text, x, y, size, color=(0,0,0), font_type = "wolf_sheep/fonts/CRT.ttf"):
     try:

@@ -4,7 +4,7 @@ import random
 from gamelogic import GameLogic
 from draw import Draw
 from models import Player, Zombie, Grass
-from utils import load_sprite, get_random_position, text_to_screen
+from utils import get_positions
 from  pygame import (
     QUIT, 
     KEYDOWN,
@@ -24,12 +24,14 @@ class Lockenbach:
         self._init_pygame()
         
         # Initialize Draw Module
-        draw = Draw()
-        self.draw = draw
+        self.draw = Draw()
         
         # Use Draw module for screen and background
         self.screen = self.draw.screen
         self.background = self.draw.background
+
+        # Initialize GameLogic Module
+        #self.game_logic = GameLogic()
 
         # Initialize clock, font, and message
         self.clock = pygame.time.Clock()
@@ -40,8 +42,14 @@ class Lockenbach:
         self.grass = []
         self.zombies = []
         self.player = Player((400, 300))
+
+        for x in range(self.screen.get_width()):
+            for y in range(self.screen.get_height()):
+                if x % 12 == 0:
+                    if y % 12 == 0:
+                        self.grass.append(Grass(get_positions(x, y), pygame.time.get_ticks()))
         
-    
+        """
         for _ in range(6):
             while True:
                 position = get_random_position(self.screen)
@@ -52,7 +60,8 @@ class Lockenbach:
                     break
 
             self.zombies.append(Zombie(position, self.zombies.append))
-    
+        """
+
     def start(self):
         self.message = "Press 'Space' to begin!"
         if pygame.key.get_pressed() == K_SPACE:
@@ -60,10 +69,10 @@ class Lockenbach:
 
     def main_loop(self):
         while True:
-            self.draw._get_game_objects(self.player, self.asteroids, [])
+            self.draw._set_game_objects(self.player, [], self.grass)
 
             self._handle_input()
-            GameLogic._process_game_logic()
+            # self.game_logic._process_game_logic()
             self.draw._draw()
 
     def _init_pygame(self):
@@ -75,20 +84,21 @@ class Lockenbach:
             if event.type == QUIT or (event.type == KEYDOWN and event.key == K_ESCAPE):
                 quit()
             elif (
-                self.spaceship
+                self.player
                 and event.type == KEYDOWN
                 and event.key == K_SPACE
             ):
-                self.spaceship.shoot()
+                pass
+                #self.spaceship.shoot()
 
         is_key_pressed = pygame.key.get_pressed()
 
-        if self.spaceship:
+        if self.player:
             if is_key_pressed[K_RIGHT]:
-                self.spaceship.rotate(clockwise=True)
+                self.player.rotate(clockwise=True)
             elif is_key_pressed[K_LEFT]:
-                self.spaceship.rotate(clockwise=False)
+                self.player.rotate(clockwise=False)
             if is_key_pressed[K_UP]:
-                self.spaceship.accelerate()
+                self.player.accelerate()
             elif is_key_pressed[K_DOWN]:
-                self.spaceship.decelerate()
+                self.player.decelerate()

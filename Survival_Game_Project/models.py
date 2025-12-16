@@ -44,7 +44,7 @@ class Player(Object):
     def accelerate(self):
         self.velocity += self.direction * self.ACCELERATION
     
-    def deccelerate(self):
+    def decelerate(self):
         self.velocity -= self.direction * self.ACCELERATION
 
 class Zombie(Object):
@@ -53,7 +53,7 @@ class Zombie(Object):
         super().__init__(name, position, sprite, velocity)
 
 class Grass(Object):
-    def __init__(self, time, position, sprite, num=3):
+    def __init__(self, position, time, num=3):
         sprites = {1: "ground",
                    2: "dry grass",
                    3: "grass"}
