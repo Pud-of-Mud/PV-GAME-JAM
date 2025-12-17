@@ -1,6 +1,7 @@
 # This module handles all drawing operations for the game
 
 import pygame
+import pygame
 from utils import load_sprite, get_random_position, text_to_screen, load_background_obj
 from pygame.transform import rotozoom, scale
 from map import Map
@@ -27,7 +28,10 @@ class Draw:
             game_object.draw(self.screen)
 
         pygame.display.flip()
-        #self.clock.tick(60)
+        
+        # Sets the game to run 60 ticks per second (FPS)
+        clock = pygame.time.Clock()
+        clock.tick(60)
     
     def _set_game_objects(self, player, zombies, grass):
         game_objects = [*grass]

@@ -94,29 +94,37 @@ class Lockenbach:
 
         # Check for continuously held keys for movement
         keys = pygame.key.get_pressed()
+        numKeysDown = 0
+
         if self.player:
             moving = False
             if keys[K_RIGHT]:
                 self.player.rotate("WalkRight")
-                self.player.accelerate()
+                self.player.accelerate(10)
                 self.player.move(self.screen.get_size())
                 moving = True
-            elif keys[K_LEFT]:
+                numKeysDown += 1
+            if keys[K_LEFT]:
                 self.player.rotate("WalkLeft")
-                self.player.accelerate()
+                self.player.accelerate(10)
                 self.player.move(self.screen.get_size())
                 moving = True
-            elif keys[K_UP]:
+                numKeysDown += 1
+            if keys[K_UP]:
                 self.player.rotate("Back")
-                self.player.accelerate()
+                self.player.accelerate(10)
                 self.player.move(self.screen.get_size())
                 moving = True
-            elif keys[K_DOWN]:
+                numKeysDown += 1
+            if keys[K_DOWN]:
                 self.player.rotate("Forward")
-                self.player.accelerate()
+                self.player.accelerate(10)
                 self.player.move(self.screen.get_size())
                 moving = True
-            
+                numKeysDown += 1
+            if numKeysDown > 1:
+                self.player.accelerate(-5)
+
             if not moving:
                 self.player.is_moving = 0
 
