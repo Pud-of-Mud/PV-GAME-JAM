@@ -40,7 +40,7 @@ class Object:
 
 class Player(Object):
     ACCELERATION = 0.2
-    ANIMATION_SPEED = 10  # frames per animation cycle
+    ANIMATION_SPEED = 5  # frames per animation cycle
     
     def __init__(self, position):
         sprite = scale(load_sprite("Player", "PlayerForward"), (60, 60))
@@ -131,11 +131,7 @@ class Player(Object):
         
         if self.is_moving == 0:
             self.animation_frame = 0
-            if self.direction == DOWN:
-                self.sprite = scale(load_sprite("Player", "PlayerForward"), (60, 60))
-            elif self.direction == UP:
-                self.sprite = scale(load_sprite("Player", "PlayerBack"), (60, 60))
-            elif self.direction == LEFT:
+            if self.direction == LEFT:
                 self.sprite = scale(load_sprite("Player", "PlayerStandLeft"), (60, 60))
             elif self.direction == RIGHT:
                 self.sprite = scale(load_sprite("Player", "PlayerStandRight"), (60, 60))

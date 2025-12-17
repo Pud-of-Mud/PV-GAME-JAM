@@ -3,11 +3,16 @@
 import pygame
 from utils import load_sprite, get_random_position, text_to_screen, load_background_obj
 from pygame.transform import rotozoom, scale
+from map import Map
 
 class Draw:
     def __init__(self):
         self.screen = pygame.display.set_mode((1200, 600))
-        self.background = scale(load_background_obj("ground", False), (50, 50))
+
+        # Initialize Map object
+        map = Map(self.screen.get_width(), self.screen.get_height())
+
+        self.background = scale(map.background, (50, 50))
         self.game_objects = []
 
     def _draw(self):
