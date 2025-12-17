@@ -12,17 +12,15 @@ class Draw:
 
         # Initialize Map object
         map = Map(self.screen.get_width(), self.screen.get_height())
-
-        self.background = scale(map.background, (50, 50))
+    
+        self.background = map.map1()
         self.game_objects = []
 
     def _draw(self):
-        self.screen.blit(self.background, (0, 0))  # Clear screen with black\
-        for x in range(self.screen.get_width()):
-            for y in range(self.screen.get_height()):
-                if x % 50 == 0:
-                    if y % 50 == 0:
-                        self.screen.blit(self.background, (x, y))
+        #self.screen.blit(self.background, (0, 0))  # Clear screen with black\
+        for row in range(len(self.background)):
+            for col in range(len(self.background[0])):
+                self.screen.blit(scale(self.background[row][col], (50, 50)), (col * 50, row * 50))
 
         for game_object in self.game_objects:
             game_object.draw(self.screen)

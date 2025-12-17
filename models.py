@@ -88,7 +88,7 @@ class Player(Object):
 
     def accelerate(self, speed):
         self.velocity += self.direction * speed
-        if self.velocity.length() > speed:
+        if self.velocity.length != 0 and self.velocity.length() > speed:
             self.velocity.scale_to_length(speed)
 
     # animation update for the player sprite
@@ -147,5 +147,5 @@ class Grass(Object):
                    2: "dry grass",
                    3: "grass"}
         grass_type = sprites[num]
-        sprite = scale(load_sprite("Grass", grass_type), (50, 50))
+        sprite = scale(load_sprite("Plants", grass_type), (50, 50))
         super().__init__(time, position, sprite, Vector2(0))
