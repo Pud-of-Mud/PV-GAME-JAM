@@ -6,7 +6,7 @@ from pygame.transform import rotozoom, scale
 
 class Draw:
     def __init__(self):
-        self.screen = pygame.display.set_mode((1600, 900))
+        self.screen = pygame.display.set_mode((1200, 600))
         self.background = scale(load_background_obj("ground", False), (50, 50))
         self.game_objects = []
 
