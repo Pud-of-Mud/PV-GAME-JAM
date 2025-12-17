@@ -1,13 +1,13 @@
 # This module handles all drawing operations for the game
 
 import pygame
-from utils import load_sprite, get_random_position, text_to_screen
+from utils import load_sprite, get_random_position, text_to_screen, load_background_obj
 from pygame.transform import rotozoom, scale
 
 class Draw:
     def __init__(self):
         self.screen = pygame.display.set_mode((1600, 900))
-        self.background = scale(load_sprite("Grass", "ground", False), (50, 50))
+        self.background = scale(load_background_obj("ground", False), (50, 50))
         self.game_objects = []
 
     def _draw(self):

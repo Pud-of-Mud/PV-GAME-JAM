@@ -3,6 +3,9 @@ from pygame.transform import rotozoom, scale
 from utils import load_sprite, get_random_position, text_to_screen
 
 UP = Vector2(0, -1)
+DOWN = Vector2(0, 1)
+LEFT = Vector2(-1, 0)
+RIGHT = Vector2(1, 0)
 
 class Object:
     def __init__(self, time, position, sprite, velocity):
@@ -53,16 +56,16 @@ class Player(Object):
         
         # set direction vector based on input
         if direction == "StandRight" or direction == "WalkRight":
-            self.direction = Vector2(1,0)
+            self.direction = RIGHT
             self.is_moving = 4
         elif direction == "StandLeft" or direction == "WalkLeft":
-            self.direction = Vector2(-1,0)
+            self.direction = LEFT
             self.is_moving = 3
         elif direction == "Back" or direction == "Back1":
-            self.direction = Vector2(0,-1)
+            self.direction = UP
             self.is_moving = 2
         elif direction == "Forward" or direction == "Forward1":
-            self.direction = Vector2(0,1)
+            self.direction = DOWN
             self.is_moving = 1
         
         # change sprite based on direction
@@ -125,6 +128,17 @@ class Player(Object):
             # Alternate between WalkRight sprites
             sprite_name = "PlayerWalkRight" if self.animation_frame < self.ANIMATION_SPEED // 2 else "PlayerStandRight"
             self.sprite = scale(load_sprite("Player", sprite_name), (60, 60))
+        
+        if self.is_moving == 0:
+            self.animation_frame = 0
+            if self.direction == DOWN:
+                self.sprite = scale(load_sprite("Player", "PlayerForward"), (60, 60))
+            elif self.direction == UP:
+                self.sprite = scale(load_sprite("Player", "PlayerBack"), (60, 60))
+            elif self.direction == LEFT:
+                self.sprite = scale(load_sprite("Player", "PlayerStandLeft"), (60, 60))
+            elif self.direction == RIGHT:
+                self.sprite = scale(load_sprite("Player", "PlayerStandRight"), (60, 60))
 
 class Zombie(Object):
     def __init__(self, name, position, sprite, velocity):

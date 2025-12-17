@@ -14,6 +14,15 @@ def load_sprite(type, name, with_alpha=True):
     else:
         return loaded_sprite.convert()
 
+def load_background_obj(name, with_alpha=True):
+    path = f"Survival_Game_Project/background objects/{name}.png"
+    loaded_sprite = load(path)
+
+    if with_alpha:
+        return loaded_sprite.convert_alpha()
+    else:
+        return loaded_sprite.convert()
+
 def get_random_position(surface):
     return Vector2(
         random.randrange(surface.get_width()),
