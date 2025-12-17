@@ -45,8 +45,8 @@ class Lockenbach:
 
         for x in range(self.screen.get_width()):
             for y in range(self.screen.get_height()):
-                if x % 12 == 0:
-                    if y % 12 == 0:
+                if x % 50 == 10:
+                    if y % 50 == 10:
                         self.grass.append(Grass(get_positions(x, y), pygame.time.get_ticks()))
         
         """
@@ -72,6 +72,7 @@ class Lockenbach:
             self.draw._set_game_objects(self.player, [], self.grass)
 
             self._handle_input()
+            self.player.update()
             # self.game_logic._process_game_logic()
             self.draw._draw()
 
@@ -91,14 +92,31 @@ class Lockenbach:
                 pass
                 #self.spaceship.shoot()
 
-        is_key_pressed = pygame.key.get_pressed()
-
+        # Check for continuously held keys for movement
+        keys = pygame.key.get_pressed()
         if self.player:
-            if is_key_pressed[K_RIGHT]:
-                self.player.rotate(clockwise=True)
-            elif is_key_pressed[K_LEFT]:
-                self.player.rotate(clockwise=False)
-            if is_key_pressed[K_UP]:
+            moving = False
+            if keys[K_RIGHT]:
+                self.player.rotate("WalkRight")
                 self.player.accelerate()
-            elif is_key_pressed[K_DOWN]:
-                self.player.decelerate()
+                self.player.move(self.screen.get_size())
+                moving = True
+            if keys[K_LEFT]:
+                self.player.rotate("WalkLeft")
+                self.player.accelerate()
+                self.player.move(self.screen.get_size())
+                moving = True
+            if keys[K_UP]:
+                self.player.rotate("Back")
+                self.player.accelerate()
+                self.player.move(self.screen.get_size())
+                moving = True
+            if keys[K_DOWN]:
+                self.player.rotate("Forward")  
+                self.player.accelerate()
+                self.player.move(self.screen.get_size())
+                moving = True
+            
+            if not moving:
+                self.player.is_moving = 0
+

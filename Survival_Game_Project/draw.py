@@ -2,23 +2,27 @@
 
 import pygame
 from utils import load_sprite, get_random_position, text_to_screen
+from pygame.transform import rotozoom, scale
 
 class Draw:
     def __init__(self):
-        self.screen = pygame.display.set_mode((800, 600))
-        self.background = load_sprite("Grass", "ground", False)
+        self.screen = pygame.display.set_mode((1600, 900))
+        self.background = scale(load_sprite("Grass", "ground", False), (50, 50))
         self.game_objects = []
 
     def _draw(self):
-        #self.screen.blit(self.background, (0, 0))  # Clear screen with black\
+        self.screen.blit(self.background, (0, 0))  # Clear screen with black\
         for x in range(self.screen.get_width()):
             for y in range(self.screen.get_height()):
-                if x % 12 == 0:
-                    if y % 12 == 0:
+                if x % 50 == 0:
+                    if y % 50 == 0:
                         self.screen.blit(self.background, (x, y))
 
         for game_object in self.game_objects:
             game_object.draw(self.screen)
+
+        pygame.display.flip()
+        #self.clock.tick(60)
     
     def _set_game_objects(self, player, zombies, grass):
         game_objects = [*grass]
