@@ -86,10 +86,10 @@ class Player(Object):
         self.sprite = new_sprite
         # self.position = Vector2(new_rect.topleft) + Vector2(old_center)
 
-    def accelerate(self):
-        self.velocity += self.direction * 10
-        if self.velocity.length() > 10:
-            self.velocity.scale_to_length(10)
+    def accelerate(self, speed):
+        self.velocity += self.direction * speed
+        if self.velocity.length() > speed:
+            self.velocity.scale_to_length(speed)
 
     # animation update for the player sprite
     def update(self):
