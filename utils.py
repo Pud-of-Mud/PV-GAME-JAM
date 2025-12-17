@@ -6,7 +6,7 @@ from pygame.image import load
 from pygame.math import Vector2
 
 def load_sprite(type, name, with_alpha=True):
-    path = f"Survival_Game_Project/sprites/{type}/{name}.png"
+    path = f"sprites/{type}/{name}.png"
     loaded_sprite = load(path)
 
     if with_alpha:
@@ -15,7 +15,7 @@ def load_sprite(type, name, with_alpha=True):
         return loaded_sprite.convert()
 
 def load_background_obj(name, with_alpha=True):
-    path = f"Survival_Game_Project/background objects/{name}.png"
+    path = f"background objects/{name}.png"
     loaded_sprite = load(path)
 
     if with_alpha:
@@ -37,7 +37,7 @@ def get_random_velocity(min_speed, max_speed):
 def get_positions(x, y):
     return Vector2(x, y)
 
-def text_to_screen(screen, text, x, y, size, color=(0,0,0), font_type = "wolf_sheep/fonts/CRT.ttf"):
+def text_to_screen(screen, text, x, y, size, color=(0,0,0), font_type = "fonts/PLACEHOLDER.ttf"):
     try:
         game_font = pygame.font.Font(font_type, size) 
         # Establishes font obj
