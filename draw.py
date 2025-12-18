@@ -8,7 +8,7 @@ from map import Map
 
 class Draw:
     def __init__(self):
-        self.screen = pygame.display.set_mode((1200, 900))
+        self.screen = pygame.display.set_mode((1200, 600))
 
         # Initialize Map object
         map = Map(self.screen.get_width(), self.screen.get_height())

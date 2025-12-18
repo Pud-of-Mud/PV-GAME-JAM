@@ -17,7 +17,7 @@ class Map:
             "grdTL": load_background_obj("grassdirt", "grassdirtTOP_LEFT"),
             "grdBR": load_background_obj("grassdirt", "grassdirtBOT_RIGHT"),
             "grdBL": load_background_obj("grassdirt", "grassdirtBOT_LEFT"),
-            "grsTile": load_background_obj("grassdirt", "grasstile"),
+            "grsTile": load_background_obj("grassdirt", "grasstile", False),
             "grdTL1": load_background_obj("grassdirt", "grassdirtTOP_LEFT1"),
             "grdTR1": load_background_obj("grassdirt", "grassdirtTOP_RIGHT1"),
             "grdBL1": load_background_obj("grassdirt", "grassdirtBOT_LEFT1"),
