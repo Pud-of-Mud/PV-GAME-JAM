@@ -43,12 +43,13 @@ class Lockenbach:
         self.zombies = []
         self.player = Player((400, 300))
 
+        """
         for x in range(self.screen.get_width()):
             for y in range(self.screen.get_height()):
                 if x % 50 == 10:
                     if y % 50 == 10:
                         self.grass.append(Grass(get_positions(x, y), pygame.time.get_ticks()))
-        
+        """
         """
         for _ in range(6):
             while True:
@@ -100,13 +101,13 @@ class Lockenbach:
             moving = False
             if keys[K_d]:
                 self.player.rotate("WalkRight")
-                self.player.accelerate(10)
+                self.player.accelerate(7)
                 self.player.move(self.screen.get_size())
                 moving = True
                 numKeysDown += 1
             elif keys[K_a]:
                 self.player.rotate("WalkLeft")
-                self.player.accelerate(10)
+                self.player.accelerate(7)
                 self.player.move(self.screen.get_size())
                 moving = True
                 numKeysDown += 1
@@ -118,7 +119,7 @@ class Lockenbach:
                 numKeysDown += 1
             elif keys[K_s]:
                 self.player.rotate("Forward")
-                self.player.accelerate(10)
+                self.player.accelerate(7)
                 self.player.move(self.screen.get_size())
                 moving = True
                 numKeysDown += 1
