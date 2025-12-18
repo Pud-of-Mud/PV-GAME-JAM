@@ -5,40 +5,37 @@ class Map:
     def __init__(self, width, height):
         self.width = width / 50
         self.height = height /50
-        self.background = None
+        self.back0 = None
         self.tiles = [[None for _ in range(width)] for _ in range(height)]
-        self.key_back = {
-            "ground": load_background_obj("soils", "ground", False),
-            "grdBOT": load_background_obj("grassdirt", "grassdirtBOT"),
-            "grdTOP": load_background_obj("grassdirt", "grassdirtTOP"),
-            "grdLEFT": load_background_obj("grassdirt", "grassdirtLEFT"),
-            "grdRIGHT": load_background_obj("grassdirt", "grassdirtRIGHT"),
-            "grdTR": load_background_obj("grassdirt", "grassdirtTOP_RIGHT"),
-            "grdTL": load_background_obj("grassdirt", "grassdirtTOP_LEFT"),
-            "grdBR": load_background_obj("grassdirt", "grassdirtBOT_RIGHT"),
-            "grdBL": load_background_obj("grassdirt", "grassdirtBOT_LEFT"),
-            "grsTile": load_background_obj("grassdirt", "grasstile", False),
-            "grdTL1": load_background_obj("grassdirt", "grassdirtTOP_LEFT1"),
-            "grdTR1": load_background_obj("grassdirt", "grassdirtTOP_RIGHT1"),
-            "grdBL1": load_background_obj("grassdirt", "grassdirtBOT_LEFT1"),
-            "grdBR1": load_background_obj("grassdirt", "grassdirtBOT_RIGHT1"),
-        }
+        
     
     def map1(self):
-        self.background
+        k = {
+            "0": load_background_obj("soils", "ground", False),
+            "l": load_background_obj("grassdirt", "grassdirtLEFT"),
+            "r": load_background_obj("grassdirt", "grassdirtRIGHT"),
+            "tr": load_background_obj("grassdirt", "grassdirtTOP_RIGHT"),
+            "tl": load_background_obj("grassdirt", "grassdirtTOP_LEFT"),
+            "br": load_background_obj("grassdirt", "grassdirtBOT_RIGHT"),
+            "bl": load_background_obj("grassdirt", "grassdirtBOT_LEFT"),
+            "x": load_background_obj("grassdirt", "grasstile", False),
+            "t": load_background_obj("grassdirt", "grassdirtTOP", False),
+            "b": load_background_obj("grassdirt", "grassdirtBOT", False)
+        }
+        
         tiles = [
-            [self.key_back["grsTile"], self.key_back["grsTile"], self.key_back["grsTile"], self.key_back["grsTile"], self.key_back["grsTile"], self.key_back["grsTile"], self.key_back["grsTile"], self.key_back["grsTile"], self.key_back["grsTile"], self.key_back["grsTile"], self.key_back["grsTile"], self.key_back["grsTile"], self.key_back["grsTile"], self.key_back["grsTile"], self.key_back["grsTile"], self.key_back["grsTile"], self.key_back["grsTile"], self.key_back["grsTile"] , self.key_back["grsTile"], self.key_back["grsTile"], self.key_back["grsTile"], self.key_back["grsTile"], self.key_back["grsTile"], self.key_back["grsTile"]], 
-            [self.key_back["grsTile"], self.key_back["grsTile"], self.key_back["grsTile"], self.key_back["grsTile"], self.key_back["grdTL"], self.key_back["grdTOP"], self.key_back["grdTOP"], self.key_back["grdTOP"], self.key_back["grdTOP"], self.key_back["grdTOP"], self.key_back["grdTOP"], self.key_back["grdTOP"], self.key_back["grdTOP"], self.key_back["grdTOP"], self.key_back["grdTOP"], self.key_back["grdTOP"], self.key_back["grdTOP"], self.key_back["grdTOP"] ,self.key_back["grdTOP"], self.key_back["grdTR"], self.key_back["grsTile"], self.key_back["grsTile"], self.key_back["grsTile"], self.key_back["grsTile"]],
-            [self.key_back["grsTile"], self.key_back["grsTile"], self.key_back["grsTile"], self.key_back["grsTile"], self.key_back["grdLEFT"], self.key_back["ground"], self.key_back["ground"], self.key_back["ground"], self.key_back["ground"], self.key_back["ground"], self.key_back["ground"], self.key_back["ground"], self.key_back["ground"], self.key_back["ground"], self.key_back["ground"], self.key_back["ground"], self.key_back["ground"], self.key_back["ground"] ,self.key_back["ground"], self.key_back["grdRIGHT"], self.key_back["grsTile"], self.key_back["grsTile"], self.key_back["grsTile"], self.key_back["grsTile"]],
-            [self.key_back["grsTile"], self.key_back["grsTile"], self.key_back["grsTile"], self.key_back["grsTile"], self.key_back["grdLEFT"], self.key_back["ground"], self.key_back["ground"], self.key_back["ground"], self.key_back["ground"], self.key_back["ground"], self.key_back["ground"], self.key_back["ground"], self.key_back["ground"], self.key_back["ground"], self.key_back["ground"], self.key_back["ground"], self.key_back["ground"], self.key_back["ground"] ,self.key_back["ground"], self.key_back["grdRIGHT"], self.key_back["grsTile"], self.key_back["grsTile"], self.key_back["grsTile"], self.key_back["grsTile"]], 
-            [self.key_back["grsTile"], self.key_back["grsTile"], self.key_back["grsTile"], self.key_back["grsTile"], self.key_back["grdLEFT"], self.key_back["ground"], self.key_back["ground"], self.key_back["ground"], self.key_back["ground"], self.key_back["ground"], self.key_back["ground"], self.key_back["ground"], self.key_back["ground"], self.key_back["ground"], self.key_back["ground"], self.key_back["ground"], self.key_back["ground"], self.key_back["ground"] ,self.key_back["ground"], self.key_back["grdRIGHT"], self.key_back["grsTile"], self.key_back["grsTile"], self.key_back["grsTile"], self.key_back["grsTile"]],
-            [self.key_back["grsTile"], self.key_back["grsTile"], self.key_back["grsTile"], self.key_back["grsTile"], self.key_back["grdLEFT"], self.key_back["ground"], self.key_back["ground"], self.key_back["ground"], self.key_back["ground"], self.key_back["ground"], self.key_back["ground"], self.key_back["ground"], self.key_back["ground"], self.key_back["ground"], self.key_back["ground"], self.key_back["ground"], self.key_back["ground"], self.key_back["ground"] ,self.key_back["ground"], self.key_back["grdRIGHT"], self.key_back["grsTile"], self.key_back["grsTile"], self.key_back["grsTile"], self.key_back["grsTile"]],
-            [self.key_back["grsTile"], self.key_back["grsTile"], self.key_back["grsTile"], self.key_back["grsTile"], self.key_back["grdLEFT"], self.key_back["ground"], self.key_back["ground"], self.key_back["ground"], self.key_back["ground"], self.key_back["ground"], self.key_back["ground"], self.key_back["ground"], self.key_back["ground"], self.key_back["ground"], self.key_back["ground"], self.key_back["ground"], self.key_back["ground"], self.key_back["ground"] ,self.key_back["ground"], self.key_back["grdRIGHT"], self.key_back["grsTile"], self.key_back["grsTile"], self.key_back["grsTile"], self.key_back["grsTile"]], 
-            [self.key_back["grsTile"], self.key_back["grsTile"], self.key_back["grsTile"], self.key_back["grsTile"], self.key_back["grdLEFT"], self.key_back["ground"], self.key_back["ground"], self.key_back["ground"], self.key_back["ground"], self.key_back["ground"], self.key_back["ground"], self.key_back["ground"], self.key_back["ground"], self.key_back["ground"], self.key_back["ground"], self.key_back["ground"], self.key_back["ground"], self.key_back["ground"] ,self.key_back["ground"], self.key_back["grdRIGHT"], self.key_back["grsTile"], self.key_back["grsTile"], self.key_back["grsTile"], self.key_back["grsTile"]],
-            [self.key_back["grsTile"], self.key_back["grsTile"], self.key_back["grsTile"], self.key_back["grsTile"], self.key_back["grdLEFT"], self.key_back["ground"], self.key_back["ground"], self.key_back["ground"], self.key_back["ground"], self.key_back["ground"], self.key_back["ground"], self.key_back["ground"], self.key_back["ground"], self.key_back["ground"], self.key_back["ground"], self.key_back["ground"], self.key_back["ground"], self.key_back["ground"] ,self.key_back["ground"], self.key_back["grdRIGHT"], self.key_back["grsTile"], self.key_back["grsTile"], self.key_back["grsTile"], self.key_back["grsTile"]],
-            [self.key_back["grsTile"], self.key_back["grsTile"], self.key_back["grsTile"], self.key_back["grsTile"], self.key_back["grdLEFT"], self.key_back["ground"], self.key_back["ground"], self.key_back["ground"], self.key_back["ground"], self.key_back["ground"], self.key_back["ground"], self.key_back["ground"], self.key_back["ground"], self.key_back["ground"], self.key_back["ground"], self.key_back["ground"], self.key_back["ground"], self.key_back["ground"] ,self.key_back["ground"], self.key_back["grdRIGHT"], self.key_back["grsTile"], self.key_back["grsTile"], self.key_back["grsTile"], self.key_back["grsTile"]], 
-            [self.key_back["grsTile"], self.key_back["grsTile"], self.key_back["grsTile"], self.key_back["grsTile"], self.key_back["grdBL"], self.key_back["grdBOT"], self.key_back["grdBOT"], self.key_back["grdBOT"], self.key_back["grdBOT"], self.key_back["grdBOT"], self.key_back["grdBOT"], self.key_back["grdBOT"], self.key_back["grdBOT"], self.key_back["grdBOT"], self.key_back["grdBOT"], self.key_back["grdBOT"], self.key_back["grdBOT"], self.key_back["grdBOT"] ,self.key_back["grdBOT"], self.key_back["grdBR"], self.key_back["grsTile"], self.key_back["grsTile"], self.key_back["grsTile"], self.key_back["grsTile"]],
-            [self.key_back["grsTile"], self.key_back["grsTile"], self.key_back["grsTile"], self.key_back["grsTile"], self.key_back["grsTile"], self.key_back["grsTile"], self.key_back["grsTile"], self.key_back["grsTile"], self.key_back["grsTile"], self.key_back["grsTile"], self.key_back["grsTile"], self.key_back["grsTile"], self.key_back["grsTile"], self.key_back["grsTile"], self.key_back["grsTile"], self.key_back["grsTile"], self.key_back["grsTile"], self.key_back["grsTile"] , self.key_back["grsTile"], self.key_back["grsTile"], self.key_back["grsTile"], self.key_back["grsTile"], self.key_back["grsTile"], self.key_back["grsTile"]]
+            [k["x"], k["x"], k["x"], k["x"], k["x"], k["x"], k["x"], k["x"], k["x"], k["x"], k["x"], k["x"], k["x"], k["x"], k["x"], k["x"], k["x"], k["x"] , k["x"], k["x"], k["x"], k["x"], k["x"], k["x"]], 
+            [k["x"], k["x"], k["x"], k["x"], k["tl"], k["t"], k["t"], k["t"], k["t"], k["t"], k["t"], k["t"], k["t"], k["t"], k["t"], k["t"], k["t"], k["t"] ,k["t"], k["tr"], k["x"], k["x"], k["x"], k["x"]],
+            [k["x"], k["x"], k["x"], k["x"], k["l"], k["0"], k["0"], k["0"], k["0"], k["0"], k["0"], k["0"], k["0"], k["0"], k["0"], k["0"], k["0"], k["0"] ,k["0"], k["r"], k["x"], k["x"], k["x"], k["x"]],
+            [k["x"], k["x"], k["x"], k["x"], k["l"], k["0"], k["0"], k["0"], k["0"], k["0"], k["0"], k["0"], k["0"], k["0"], k["0"], k["0"], k["0"], k["0"] ,k["0"], k["r"], k["x"], k["x"], k["x"], k["x"]], 
+            [k["x"], k["x"], k["x"], k["x"], k["l"], k["0"], k["0"], k["0"], k["0"], k["0"], k["0"], k["0"], k["0"], k["0"], k["0"], k["0"], k["0"], k["0"] ,k["0"], k["r"], k["x"], k["x"], k["x"], k["x"]],
+            [k["x"], k["x"], k["x"], k["x"], k["l"], k["0"], k["0"], k["0"], k["0"], k["0"], k["0"], k["0"], k["0"], k["0"], k["0"], k["0"], k["0"], k["0"] ,k["0"], k["r"], k["x"], k["x"], k["x"], k["x"]],
+            [k["x"], k["x"], k["x"], k["x"], k["l"], k["0"], k["0"], k["0"], k["0"], k["0"], k["0"], k["0"], k["0"], k["0"], k["0"], k["0"], k["0"], k["0"] ,k["0"], k["r"], k["x"], k["x"], k["x"], k["x"]], 
+            [k["x"], k["x"], k["x"], k["x"], k["l"], k["0"], k["0"], k["0"], k["0"], k["0"], k["0"], k["0"], k["0"], k["0"], k["0"], k["0"], k["0"], k["0"] ,k["0"], k["r"], k["x"], k["x"], k["x"], k["x"]],
+            [k["x"], k["x"], k["x"], k["x"], k["l"], k["0"], k["0"], k["0"], k["0"], k["0"], k["0"], k["0"], k["0"], k["0"], k["0"], k["0"], k["0"], k["0"] ,k["0"], k["r"], k["x"], k["x"], k["x"], k["x"]],
+            [k["x"], k["x"], k["x"], k["x"], k["l"], k["0"], k["0"], k["0"], k["0"], k["0"], k["0"], k["0"], k["0"], k["0"], k["0"], k["0"], k["0"], k["0"] ,k["0"], k["r"], k["x"], k["x"], k["x"], k["x"]], 
+            [k["x"], k["x"], k["x"], k["x"], k["bl"], k["b"], k["b"], k["b"], k["b"], k["b"], k["b"], k["b"], k["b"], k["b"], k["b"], k["b"], k["b"], k["b"] ,k["b"], k["br"], k["x"], k["x"], k["x"], k["x"]],
+            [k["x"], k["x"], k["x"], k["x"], k["x"], k["x"], k["x"], k["x"], k["x"], k["x"], k["x"], k["x"], k["x"], k["x"], k["x"], k["x"], k["x"], k["x"] , k["x"], k["x"], k["x"], k["x"], k["x"], k["x"]]
         ] 
         return tiles
     
