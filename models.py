@@ -54,7 +54,8 @@ class Player(Object):
     # rotate the player sprite
     def rotate(self, direction):
         
-        # set direction vector based on input
+        # set direction vector based on input 
+        # sets animation based on key of 4,3,2,1 (right, left, back, forward)
         if direction == "StandRight" or direction == "WalkRight":
             self.direction = RIGHT
             self.is_moving = 4
