@@ -1,5 +1,6 @@
 import pygame
 import random
+import utils
 
 from gamelogic import GameLogic
 from draw import Draw
@@ -10,10 +11,10 @@ from  pygame import (
     KEYDOWN,
     K_ESCAPE, 
     K_SPACE, 
-    K_d, 
-    K_a, 
     K_w, 
-    K_s
+    K_a, 
+    K_s, 
+    K_d
 )
 
 class Lockenbach:
@@ -64,6 +65,9 @@ class Lockenbach:
 
     def start(self):
         self.message = "Press 'Space' to begin!"
+
+        utils.text_to_screen(self.screen, self.message, self.screen / 2, 10)
+
         if pygame.key.get_pressed() == K_SPACE:
             return True
 
@@ -98,6 +102,8 @@ class Lockenbach:
 
         if self.player:
             moving = False
+            
+            # left right
             if keys[K_d]:
                 self.player.rotate("WalkRight")
                 self.player.accelerate(10)
@@ -110,13 +116,15 @@ class Lockenbach:
                 self.player.move(self.screen.get_size())
                 moving = True
                 numKeysDown += 1
+            
+            # up down
             if keys[K_w]:
                 self.player.rotate("Back")
                 self.player.accelerate(10)
                 self.player.move(self.screen.get_size())
                 moving = True
                 numKeysDown += 1
-            elif keys[K_d]:
+            elif keys[K_s]:
                 self.player.rotate("Forward")
                 self.player.accelerate(10)
                 self.player.move(self.screen.get_size())
