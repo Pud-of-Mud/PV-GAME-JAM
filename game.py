@@ -10,10 +10,10 @@ from  pygame import (
     KEYDOWN,
     K_ESCAPE, 
     K_SPACE, 
-    K_RIGHT, 
-    K_LEFT, 
-    K_UP, 
-    K_DOWN
+    K_d, 
+    K_a, 
+    K_w, 
+    K_s
 )
 
 class Lockenbach:
@@ -28,7 +28,7 @@ class Lockenbach:
         
         # Use Draw module for screen and background
         self.screen = self.draw.screen
-        self.background = self.draw.background
+        #self.background = self.draw.background
 
         # Initialize GameLogic Module
         #self.game_logic = GameLogic()
@@ -98,25 +98,25 @@ class Lockenbach:
 
         if self.player:
             moving = False
-            if keys[K_RIGHT]:
+            if keys[K_d]:
                 self.player.rotate("WalkRight")
                 self.player.accelerate(10)
                 self.player.move(self.screen.get_size())
                 moving = True
                 numKeysDown += 1
-            elif keys[K_LEFT]:
+            elif keys[K_a]:
                 self.player.rotate("WalkLeft")
                 self.player.accelerate(10)
                 self.player.move(self.screen.get_size())
                 moving = True
                 numKeysDown += 1
-            if keys[K_UP]:
+            if keys[K_w]:
                 self.player.rotate("Back")
                 self.player.accelerate(10)
                 self.player.move(self.screen.get_size())
                 moving = True
                 numKeysDown += 1
-            elif keys[K_DOWN]:
+            elif keys[K_d]:
                 self.player.rotate("Forward")
                 self.player.accelerate(10)
                 self.player.move(self.screen.get_size())

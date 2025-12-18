@@ -14,8 +14,8 @@ def load_sprite(type, name, with_alpha=True):
     else:
         return loaded_sprite.convert()
 
-def load_background_obj(name, with_alpha=True):
-    path = f"background objects/{name}.png"
+def load_background_obj(type, name, with_alpha=True):
+    path = f"background objects/{type}/{name}.png"
     loaded_sprite = load(path)
 
     if with_alpha:

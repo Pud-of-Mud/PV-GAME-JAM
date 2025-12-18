@@ -40,7 +40,7 @@ class Object:
 
 class Player(Object):
     ACCELERATION = 0.2
-    ANIMATION_SPEED = 10  # frames per animation cycle
+    ANIMATION_SPEED = 5  # frames per animation cycle
     
     def __init__(self, position):
         sprite = scale(load_sprite("Player", "PlayerForward"), (60, 60))
@@ -88,7 +88,7 @@ class Player(Object):
 
     def accelerate(self, speed):
         self.velocity += self.direction * speed
-        if self.velocity.length() > speed:
+        if self.velocity.length != 0 and self.velocity.length() > speed:
             self.velocity.scale_to_length(speed)
 
     # animation update for the player sprite
@@ -131,11 +131,7 @@ class Player(Object):
         
         if self.is_moving == 0:
             self.animation_frame = 0
-            if self.direction == DOWN:
-                self.sprite = scale(load_sprite("Player", "PlayerForward"), (60, 60))
-            elif self.direction == UP:
-                self.sprite = scale(load_sprite("Player", "PlayerBack"), (60, 60))
-            elif self.direction == LEFT:
+            if self.direction == LEFT:
                 self.sprite = scale(load_sprite("Player", "PlayerStandLeft"), (60, 60))
             elif self.direction == RIGHT:
                 self.sprite = scale(load_sprite("Player", "PlayerStandRight"), (60, 60))
@@ -151,5 +147,5 @@ class Grass(Object):
                    2: "dry grass",
                    3: "grass"}
         grass_type = sprites[num]
-        sprite = scale(load_sprite("Grass", grass_type), (50, 50))
+        sprite = scale(load_sprite("Plants", grass_type), (50, 50))
         super().__init__(time, position, sprite, Vector2(0))
