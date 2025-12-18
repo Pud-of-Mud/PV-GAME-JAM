@@ -104,7 +104,7 @@ class Lockenbach:
                 self.player.move(self.screen.get_size())
                 moving = True
                 numKeysDown += 1
-            if keys[K_LEFT]:
+            elif keys[K_LEFT]:
                 self.player.rotate("WalkLeft")
                 self.player.accelerate(10)
                 self.player.move(self.screen.get_size())
@@ -116,7 +116,7 @@ class Lockenbach:
                 self.player.move(self.screen.get_size())
                 moving = True
                 numKeysDown += 1
-            if keys[K_DOWN]:
+            elif keys[K_DOWN]:
                 self.player.rotate("Forward")
                 self.player.accelerate(10)
                 self.player.move(self.screen.get_size())
